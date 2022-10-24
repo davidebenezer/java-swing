@@ -39,7 +39,8 @@ public class MainFrame extends JFrame {
         formPanel.setFormListener(e -> {
             String name = e.getName();
             String occupation = e.getOccupation();
-            textPanel.appendText("Name : "+name+"\nOccupation : "+occupation+"\n");
+            int ageCategory = e.getAgeCategory();
+            textPanel.appendText("Name : "+name+"\nOccupation : "+occupation+"\nAge Category :"+ageCategory+"\n");
         });
 
 //        jButton.addActionListener(new ActionListener() {

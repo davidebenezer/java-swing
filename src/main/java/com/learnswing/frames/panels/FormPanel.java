@@ -2,6 +2,10 @@ package com.learnswing.frames.panels;
 
 import com.learnswing.frames.panels.events.FormEvent;
 import com.learnswing.listener.FormListener;
+import com.learnswing.properties.AgeCategoryEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.swing.*;
@@ -40,9 +44,9 @@ public class FormPanel extends JPanel {
         submit = new JButton("Submit");
 
         DefaultListModel ageModel = new DefaultListModel();
-        ageModel.addElement("Under 18");
-        ageModel.addElement("18 to 65");
-        ageModel.addElement("Over 65");
+        ageModel.addElement(AgeCategoryEnum.BELOW18);
+        ageModel.addElement(AgeCategoryEnum.BETWEEN18AND65);
+        ageModel.addElement(AgeCategoryEnum.ABOVE65);
 
         ageList.setModel(ageModel);
         ageList.setPreferredSize(new Dimension(80, 60));
@@ -54,8 +58,8 @@ public class FormPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String name = nameField.getText();
                 String occupation = occupationField.getText();
-                String ageRange = (String) ageList.getSelectedValue();
-                FormEvent event = new FormEvent(e, name, occupation);
+                AgeCategoryEnum ageRange = (AgeCategoryEnum) ageList.getSelectedValue();
+                FormEvent event = new FormEvent(e, name, occupation, ageRange.getId());
                 if(formListener!=null){
                     formListener.formEventOccurred(event);
                 }
